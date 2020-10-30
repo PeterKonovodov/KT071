@@ -10,7 +10,7 @@ data class Post(
         val replyOwnerId: Int? = null,
         val replyPostId: Int? = null,
         val friendsOnly: Boolean = false,
-        val comments: Comments?=null,
+        val comments: Comments? = null,
         val copyright: String = "ru.netology (c)",
         val likes: Likes = Likes(),
         val reposts: Reposts = Reposts(),
