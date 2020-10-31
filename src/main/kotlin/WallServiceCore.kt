@@ -1,4 +1,4 @@
-class WallServiceCore {
+open class WallServiceCore {
     private var posts = emptyArray<Post>()
     private var comments = emptyArray<Comment>()
     private var reportsForComments = emptyArray<Report>()

@@ -2,8 +2,7 @@ import attachment.*
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 
-object WallService {
-    val service = WallServiceCore()
+object WallService : WallServiceCore() {
 }
 
 fun main() {
@@ -16,7 +15,7 @@ fun main() {
             )
         )
     )
-    WallService.service.add(
+    WallService.add(
         Post(
             date = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC),
             text = "Скоро Армагеддец!\nУспей апнуть скиллы на кейс тотального блэкаута!",
@@ -24,35 +23,35 @@ fun main() {
         )
     )
 
-    WallService.service.createComment(
+    WallService.createComment(
         Comment(
-            replyToComment = WallService.service.getLastPostId(),
+            replyToComment = WallService.getLastPostId(),
             message = "На дешевку не согласен, плачу 100502!", ownerId = 1, postId = 1
         )
     )
-    WallService.service.createComment(
+    WallService.createComment(
         Comment(
-            replyToComment = WallService.service.getLastPostId(),
+            replyToComment = WallService.getLastPostId(),
             message = "Кто здесь?", ownerId = 2, postId = 2
         )
     )
-    WallService.service.createComment(
+    WallService.createComment(
         Comment(
-            replyToComment = WallService.service.getLastPostId(),
+            replyToComment = WallService.getLastPostId(),
             message = "Казино Вулкан - подними бабло!", ownerId = 3, postId = 3
         )
     )
-    WallService.service.createComment(
+    WallService.createComment(
         Comment(
-            replyToComment = WallService.service.getLastPostId(),
+            replyToComment = WallService.getLastPostId(),
             message = "Достали со своим казином, зарэжу!", ownerId = 2, postId = 4
         )
     )
 
-    WallService.service.reportComment(3, ReportReason.SPAM)
-    WallService.service.reportComment(4, ReportReason.EXTREMISM)
+    WallService.reportComment(3, ReportReason.SPAM)
+    WallService.reportComment(4, ReportReason.EXTREMISM)
 
-    WallService.service.findPostById(WallService.service.getLastPostId())?.let { postPrint(it) }
+    WallService.findPostById(WallService.getLastPostId())?.let { postPrint(it) }
 
 }
 
@@ -77,7 +76,7 @@ fun postPrint(post: Post) {
     }
     println("copyright ${post.copyright}")
 
-    val commentString = WallService.service.getPostComments(post)
+    val commentString = WallService.getPostComments(post)
     if (commentString.isNotEmpty()) {
         println("\nКомментарии:")
         println(commentString)
